@@ -1,70 +1,98 @@
-# Getting Started with Create React App
+# Front-end MVP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running. -- The back-end has it own repository, the link for is below --
+
+## Table of Contents
+
+- [Back-end Repository](#back-end-repository)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Dependencies](#dependencies)
+- [Usage](#usage)
+- [Available Scripts](#available-scripts)
+- [API Endpoints](#api-endpoints)
+- [Authentication](#authentication)
+- [License](#license)
+
+## Back-end Repository
+
+The back-end for this project has its own repository. You can find it here:
+[https://github.com/RenatoSouzaAN/RenatoSouza/back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza/back-end-mvp)
+
+## Getting Started
+
+To get a local copy up and running, follow these steps.
+
+### Prerequisites
+
+- Node.js and npm installed on your machine
+- A running backend server with RESTful API endpoints to handle product data
+- Auth0 account for authentication
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/RenatoSouzaAN/renatosouza-front-end-mvp-react.git
+   ```
+2. Navigate to the project directory
+   ```sh
+   cd renatosouza-front-end-mvp-react
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Create a `.env` file in the root directory and add your Auth0 configuration:
+   ```
+   REACT_APP_AUTH0_DOMAIN=your_auth0_domain
+   REACT_APP_CLIENT_ID=your_auth0_client_id
+   REACT_APP_API_AUDIENCE=your_api_audience
+   ```
+
+## Dependencies
+
+The project uses the following main dependencies:
+
+- React
+- React Router
+- Auth0 React SDK
+- Fetch API for HTTP requests
+
+For a full list of dependencies, please refer to the `package.json` file.
+
+## Usage
+
+1. Ensure your backend server is running and accessible at `http://localhost:5000/products`.
+2. Start the development server:
+   ```sh
+   npm start
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+- `npm start`: Runs the app in development mode
+- `npm test`: Launches the test runner
+- `npm run build`: Builds the app for production
+- `npm run eject`: Ejects from Create React App (one-way operation)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+For more details on these scripts, refer to the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## API Endpoints
 
-### `npm test`
+- `GET /products` - Retrieves all products
+- `POST /products/create` - Adds a new product
+- `PUT /products/:id/update` - Updates a product by ID
+- `DELETE /products/:id/delete` - Deletes a product by ID
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Authentication
 
-### `npm run build`
+This application uses Auth0 for authentication. Users can log in to add, edit, or delete products. Public users can view products without authentication.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Distributed under the MIT License. See `LICENSE` for more information.
