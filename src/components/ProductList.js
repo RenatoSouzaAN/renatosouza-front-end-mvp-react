@@ -1,7 +1,24 @@
 import React from 'react';
 import { formatCurrency } from '../utils';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function ProductList({ products, onDelete, onEdit }) {
+  const { isAuthenticated, user } = useAuth0();
+
+  
+  if (!products || products.length === 0) {
+    return <div>No products available. Try adding one.</div>;
+  }
+  
+  const canEditOrDelete = (product) => {
+    if (!isAuthenticated) return false;
+    const appMetadataKey = 'https://localhost:5000/app_metadata'; 
+    
+    const isAdmin = user && user[appMetadataKey];
+    
+    return user.sub === product.user_id || isAdmin;
+  };
+  
   return (
     <section className="items">
       <h2>Produtos:</h2>
@@ -13,12 +30,16 @@ function ProductList({ products, onDelete, onEdit }) {
             <div key={product.id} className="individualProductBox">
               <div className="productImage">
                 <img src="../../placeholderimage.jpg" alt="product" className="productImage" />
-                <button className="deleteButton" onClick={() => onDelete(product.id)}>
-                  <img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15" height="15" alt="delete" />
-                </button>
-                <button className="editButton" onClick={() => onEdit(product)}>
-                  <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" width="15" height="15" alt="edit" />
-                </button>
+                {canEditOrDelete(product) && (
+                  <>
+                    <button className="deleteButton" onClick={() => onDelete(product.id)}>
+                      <img src="https://cdn-icons-png.flaticon.com/512/126/126468.png" width="15" height="15" alt="delete" />
+                    </button>
+                    <button className="editButton" onClick={() => onEdit(product)}>
+                      <img src="https://cdn-icons-png.flaticon.com/512/1159/1159633.png" width="15" height="15" alt="edit" />
+                    </button>
+                  </>
+                )}
               </div>
               <div className="productName">
                 <h2>{product.name}</h2>

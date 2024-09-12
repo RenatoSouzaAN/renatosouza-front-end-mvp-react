@@ -1,72 +1,124 @@
-const API_URL = "http://127.0.0.1:5000/products";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useCallback } from 'react';
 
-const getAccessToken = () => {
-  const token = localStorage.getItem('access_token');
-  console.log('Retrieved token from localStorage:', token ? 'Token exists' : 'No token');
-  return token;
-};
+const API_URL = "http://localhost:5000/products";
+const audience = process.env.REACT_APP_API_AUDIENCE;
 
-const createAuthHeader = () => {
-  const token = getAccessToken();
-  return token ? { 'Authorization': `Bearer ${token}` } : {};
-};
+export const useApi = () => {
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0();
 
-export const getProducts = async () => {
-  const response = await fetch(API_URL);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+  const getProducts = useCallback(async () => {
+    try {
+      let headers = {};
+      if (isAuthenticated) {
+        const token = await getAccessTokenSilently({
+          audience: audience,
+          scope: "openid profile email",
+        });
+        headers = { Authorization: `Bearer ${token}` };
+      }
+  
+      const response = await fetch(`${API_URL}`, { headers });
+      if (!response.ok) {
+        throw new Error('Error fetching products');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      throw error;
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
 
-export const addProduct = async (product) => {
-  console.log('Adding product:', product);
-  const response = await fetch(`${API_URL}/create`, {
-    method: "POST",
-    headers: { 
-      "Content-Type": "application/json",
-      ...createAuthHeader()
-    },
-    body: JSON.stringify(product),
-  });
-  if (!response.ok) {
-    console.error('Error adding product:', response.status, response.statusText);
-    throw new Error("Failed to add product");
-  }
-  const data = await response.json();
-  console.log('Product added successfully:', data);
-  return data;
-};
+  const addProduct = useCallback(async (product) => {
+    try {
+      if (!isAuthenticated) {
+        throw new Error('Not authenticated');
+      }
 
+      const token = await getAccessTokenSilently({
+        audience: audience,
+        scope: "openid profile email",
+      });
 
-export const editProduct = async (productId, product) => {
-  console.log('Updating product:', product);
-  const response = await fetch(`${API_URL}/${productId}/update`, {
-    method: "PUT",
-    headers: { 
-      "Content-Type": "application/json",
-      ...createAuthHeader()
-    },
-    body: JSON.stringify(product),
-  });
-  if (!response.ok) {
-    console.error('Error updating product:', response.status, response.statusText);
-    throw new Error("Failed to edit product");
-  }
-  console.log('Product updated successfully');
-  return response.json();
-};
+      const response = await fetch(`${API_URL}/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(product)
+      });
 
-export const deleteProduct = async (productId) => {
-  console.log('Deleting product:', productId);
-  const response = await fetch(`${API_URL}/${productId}/delete`, { 
-    method: "DELETE",
-    headers: createAuthHeader()
-  });
-  if (!response.ok) {
-    console.error('Error deleting product:', response.status, response.statusText);
-    throw new Error("Failed to delete product");
-  }
-  console.log('Product deleted successfully');
-  return response.text().then((text) => (text ? JSON.parse(text) : {}));
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error adding product:", error);
+      throw error;
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
+
+  const editProduct = useCallback(async (id, product) => {
+    try {
+      if (!isAuthenticated) {
+        throw new Error('Not authenticated');
+      }
+
+      const token = await getAccessTokenSilently({
+        audience: audience,
+        scope: "openid profile email",
+      });
+
+      const response = await fetch(`${API_URL}/${id}/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(product)
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error editing product:", error);
+      throw error;
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
+
+  const deleteProduct = useCallback(async (id) => {
+    try {
+      if (!isAuthenticated) {
+        throw new Error('Not authenticated');
+      }
+
+      const token = await getAccessTokenSilently({
+        audience: audience,
+        scope: "openid profile email",
+      });
+
+      const response = await fetch(`${API_URL}/${id}/delete`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (error) {
+      console.error("Error deleting product:", error);
+      throw error;
+    }
+  }, [getAccessTokenSilently, isAuthenticated]);
+
+  return { getProducts, addProduct, editProduct, deleteProduct };
 };

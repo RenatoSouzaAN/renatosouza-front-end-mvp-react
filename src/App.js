@@ -1,47 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './App.css';
+import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ProductList from './components/ProductList';
 import AddProductForm from './components/AddProductForm';
 import EditProductForm from './components/EditProductForm';
 import AuthComponent from './components/AuthComponent';
-import { getProducts, addProduct, editProduct, deleteProduct } from './api';
-
+import Callback from './components/Callback';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useApi } from './api';
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const { isAuthenticated, error } = useAuth0();
   const [showAddPopup, setShowAddPopup] = useState(false);
   const [showEditPopup, setShowEditPopup] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
-  const [user, setUser] = useState(null);
+  const [products, setProducts] = useState([]);
+  const { getProducts, addProduct, editProduct, deleteProduct } = useApi();
 
-  useEffect(() => {
-    fetchProducts();
-    fetchUser();
-  }, []);
-
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
-      const data = await getProducts();
-      setProducts(data);
+      const fetchedProducts = await getProducts();
+      setProducts(fetchedProducts);
     } catch (error) {
       console.error("Error fetching products:", error);
     }
-  };
+  }, [getProducts]); 
 
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/api/user', { withCredentials: true });
-      setUser(response.data);
-    } catch (error) {
-      console.error('Error fetching user:', error);
-    }
-  };
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]); 
 
   const handleAddProduct = async (product) => {
     try {
       await addProduct(product);
-      fetchProducts();
+      await fetchProducts();
       setShowAddPopup(false);
     } catch (error) {
       console.error("Error adding product:", error);
@@ -51,7 +42,7 @@ function App() {
   const handleEditProduct = async (product) => {
     try {
       await editProduct(currentProduct.id, product);
-      fetchProducts();
+      await fetchProducts();
       setShowEditPopup(false);
     } catch (error) {
       console.error("Error editing product:", error);
@@ -61,7 +52,7 @@ function App() {
   const handleDeleteProduct = async (productId) => {
     try {
       await deleteProduct(productId);
-      fetchProducts();
+      await fetchProducts();
     } catch (error) {
       console.error("Error deleting product:", error);
     }
@@ -72,55 +63,53 @@ function App() {
     setShowEditPopup(true);
   };
 
-  const login = () => {
-    window.location.href = 'http://localhost:5000/login';
-  };
-
-  const logout = () => {
-    window.location.href = 'http://localhost:5000/logout';
-  };
-
   return (
-    <div className="App">
-      <header>
+    <Router>
+      <div className="App">
+        <header>
         <div className="title">
           <h1>DMarket</h1>
-        </div>
-        <AuthComponent user={user} login={login} logout={logout} />
-        {user && (
-          <div className="openPopupButtonDiv">
-            <button onClick={() => setShowAddPopup(true)} className="openPopupButton">
-              Adicionar Novo Produto
-            </button>
           </div>
-        )}
-      </header>
+          <div style={{ marginRight: '24px' }}>
+            <div className="auth-container">
+            <AuthComponent />
+            </div>
+            {isAuthenticated && (
+              <div className="openPopupButtonDiv">
+                <button onClick={() => setShowAddPopup(true)} className="openPopupButton">
+                  Adicionar Novo Produto
+                </button>
+              </div>
+            )}            
+          </div>
 
-      {user && (
-        <>
-          <ProductList 
-            products={products} 
-            onDelete={handleDeleteProduct}
-            onEdit={openEditPopup}
+        </header>
+        <Routes>
+          <Route path="/" element={
+            <ProductList 
+              products={products}
+              onDelete={isAuthenticated ? handleDeleteProduct : null}
+              onEdit={isAuthenticated ? openEditPopup : null}
+            />
+          } />
+          <Route path="/callback" element={<Callback />} />
+        </Routes>
+        {showAddPopup && (
+          <AddProductForm 
+            onSubmit={handleAddProduct}
+            onClose={() => setShowAddPopup(false)}
           />
-
-          {showAddPopup && (
-            <AddProductForm 
-              onSubmit={handleAddProduct}
-              onClose={() => setShowAddPopup(false)}
-            />
-          )}
-
-          {showEditPopup && (
-            <EditProductForm 
-              product={currentProduct}
-              onSubmit={handleEditProduct}
-              onClose={() => setShowEditPopup(false)}
-            />
-          )}
-        </>
-      )}
-    </div>
+        )}
+        {showEditPopup && (
+          <EditProductForm 
+            product={currentProduct}
+            onSubmit={handleEditProduct}
+            onClose={() => setShowEditPopup(false)}
+          />
+        )}
+        {error && <div>Auth0 Error: {error.message}</div>}
+      </div>
+    </Router>
   );
 }
 
