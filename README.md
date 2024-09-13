@@ -47,8 +47,8 @@ To get a local copy up and running, follow these steps.
 4. Create a `.env` file in the root directory and add your Auth0 configuration:
    ```
    REACT_APP_AUTH0_DOMAIN=your_auth0_domain
-   REACT_APP_CLIENT_ID=your_auth0_client_id
    REACT_APP_API_AUDIENCE=your_api_audience
+   REACT_APP_CLIENT_ID=your_auth0_client_id
    ```
 
 ## Dependencies
