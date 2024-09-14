@@ -5,25 +5,20 @@ import { useAuth0 } from '@auth0/auth0-react';
 function ProductList({ products, onDelete, onEdit }) {
   const { isAuthenticated, user } = useAuth0();
 
-  
-  if (!products || products.length === 0) {
-    return <div>No products available. Try adding one.</div>;
-  }
+  const isProductsValid = Array.isArray(products) && products.length > 0;
   
   const canEditOrDelete = (product) => {
     if (!isAuthenticated) return false;
     const appMetadataKey = 'https://localhost:5000/app_metadata'; 
-    
     const isAdmin = user && user[appMetadataKey];
-    
     return user.sub === product.user_id || isAdmin;
   };
-  
+
   return (
     <section className="items">
       <h2>Produtos:</h2>
       <div className="allProductsBox">
-        {products.length === 0 ? (
+        {!isProductsValid ? (
           <p>Sem produtos disponíveis, experimente adicionar um.</p>
         ) : (
           products.map((product) => (

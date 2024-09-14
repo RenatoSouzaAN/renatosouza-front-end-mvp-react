@@ -13,7 +13,7 @@ export const useApi = () => {
       if (isAuthenticated) {
         const token = await getAccessTokenSilently({
           audience: audience,
-          scope: "openid profile email",
+          scope: "openid profile email offline_access",
         });
         headers = { Authorization: `Bearer ${token}` };
       }
@@ -37,7 +37,7 @@ export const useApi = () => {
 
       const token = await getAccessTokenSilently({
         audience: audience,
-        scope: "openid profile email",
+        scope: "openid profile email offline_access",
       });
 
       const response = await fetch(`${API_URL}/create`, {
@@ -68,7 +68,7 @@ export const useApi = () => {
 
       const token = await getAccessTokenSilently({
         audience: audience,
-        scope: "openid profile email",
+        scope: "openid profile email offline_access",
       });
 
       const response = await fetch(`${API_URL}/${id}/update`, {
@@ -99,7 +99,7 @@ export const useApi = () => {
 
       const token = await getAccessTokenSilently({
         audience: audience,
-        scope: "openid profile email",
+        scope: "openid profile email offline_access",
       });
 
       const response = await fetch(`${API_URL}/${id}/delete`, {
