@@ -4,6 +4,7 @@ This is the front-end MVP made to fullfill the requirements in the 'Requirements
 
 ## Table of Contents
 
+- [Technology Stack](#technology-stack)
 - [Back-end Repository](#back-end-repository)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
@@ -13,7 +14,22 @@ This is the front-end MVP made to fullfill the requirements in the 'Requirements
 - [Available Scripts](#available-scripts)
 - [API Endpoints](#api-endpoints)
 - [Authentication](#authentication)
+- [Contributors](#contributors)
 - [License](#license)
+
+## Technology Stack
+
+This front-end is built using the following technologies:
+
+-   **React.js**: A JavaScript library for building user interfaces
+-   **React Router**: For handling routing in the React application
+-   **Auth0 React SDK**: For implementing authentication
+-   **JavaScript (ES6+)**: The programming language used
+-   **HTML5**: For structuring the web content
+-   **CSS3**: For styling the application
+-   **Fetch API**: For making HTTP requests to the backend
+-   **npm**: As the package manager
+-   **Create React App**: For bootstrapping the React application
 
 ## Back-end Repository
 
@@ -40,16 +56,17 @@ To get a local copy up and running, follow these steps.
    ```sh
    cd renatosouza-front-end-mvp-react
    ```
-3. Install NPM packages
+3. Create a `.env` file in the root directory and add your Auth0 configuration:
+   ```
+   REACT_APP_AUTH0_DOMAIN=your_auth0_domain
+   REACT_APP_API_AUDIENCE=your_api_audience
+   REACT_APP_CLIENT_ID=your_auth0_client_id
+   ```
+4. Install NPM packages
    ```sh
    npm install
    ```
-4. Create a `.env` file in the root directory and add your Auth0 configuration:
-   ```
-   REACT_APP_AUTH0_DOMAIN=your_auth0_domain
-   REACT_APP_CLIENT_ID=your_auth0_client_id
-   REACT_APP_API_AUDIENCE=your_api_audience
-   ```
+
 
 ## Dependencies
 
@@ -92,6 +109,10 @@ For more details on these scripts, refer to the [Create React App documentation]
 ## Authentication
 
 This application uses Auth0 for authentication. Users can log in to add, edit, or delete products. Public users can view products without authentication.
+
+## Contributors
+
+-   Renato Souza de Almeida Neto <renatosouza.an@gmail.com>
 
 ## License
 
