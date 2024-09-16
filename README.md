@@ -1,11 +1,14 @@
 # Front-end MVP
 
-This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running. -- The back-end has it own repository, the link for is below --
+This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running.
+
+The back-end has it own repository, the link for is below.
+
+Back-end repository: [https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp)
 
 ## Table of Contents
 
 - [Technology Stack](#technology-stack)
-- [Back-end Repository](#back-end-repository)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -31,11 +34,6 @@ This front-end is built using the following technologies:
 -   **Fetch API**: For making HTTP requests to the backend
 -   **npm**: As the package manager
 -   **Create React App**: For bootstrapping the React application
-
-## Back-end Repository
-
-The back-end for this project has its own repository. You can find it here:
-[https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp)
 
 ## Getting Started
 
