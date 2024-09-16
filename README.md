@@ -35,7 +35,7 @@ This front-end is built using the following technologies:
 ## Back-end Repository
 
 The back-end for this project has its own repository. You can find it here:
-[https://github.com/RenatoSouzaAN/RenatoSouza/back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza/back-end-mvp)
+[https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp)
 
 ## Getting Started
 
