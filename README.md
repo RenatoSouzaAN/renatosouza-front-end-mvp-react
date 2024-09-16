@@ -9,6 +9,7 @@ This is the front-end MVP made to fullfill the requirements in the 'Requirements
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
+  - [Docker](#docker)
 - [Dependencies](#dependencies)
 - [Usage](#usage)
 - [Available Scripts](#available-scripts)
@@ -67,6 +68,23 @@ To get a local copy up and running, follow these steps.
    npm install
    ```
 
+### Docker
+
+To run the front-end through Docker, ensure you have [Docker](https://docs.docker.com/engine/install/) installed and running on your machine.
+
+Navigate to the directory containing the Dockerfile and package.json in your terminal. Execute **as administrator** the following command to build the Docker image:
+
+```
+$ docker build -t renatosouza-front-end-mvp-react .
+```
+
+Once the image is created, to run the container, **execute as an administrator** the following command:
+
+```
+$ docker run -p 3000:3000 renatosouza-front-end-mvp-react
+```
+
+Once running, to access the front-end, open [http://localhost:3000/](http://localhost:3000/) in your browser. You **must** have the back-end repository downloaded and running, so you can test the whole project.
 
 ## Dependencies
 
