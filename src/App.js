@@ -70,7 +70,7 @@ function App() {
         <div className="title">
           <h1>DMarket</h1>
           </div>
-          <div style={{ marginRight: '24px' }}>
+          <div style={{ marginRight: '40px' }}>
             <div className="auth-container">
             <AuthComponent />
             </div>
