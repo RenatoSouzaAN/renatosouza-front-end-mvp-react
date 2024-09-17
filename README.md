@@ -1,3 +1,8 @@
+
+# DMarket Structure
+
+![Dmarket drawio](https://github.com/user-attachments/assets/84537415-65f1-4024-b06d-8765cf9f8681)
+
 # Front-end MVP
 
 This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running.
