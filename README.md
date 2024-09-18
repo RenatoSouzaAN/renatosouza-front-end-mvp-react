@@ -30,15 +30,16 @@ Back-end repository: [https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp]
 
 This front-end is built using the following technologies:
 
--   **React.js**: A JavaScript library for building user interfaces
--   **React Router**: For handling routing in the React application
--   **Auth0 React SDK**: For implementing authentication
--   **JavaScript (ES6+)**: The programming language used
--   **HTML5**: For structuring the web content
--   **CSS3**: For styling the application
--   **Fetch API**: For making HTTP requests to the backend
--   **npm**: As the package manager
--   **Create React App**: For bootstrapping the React application
+-   **React.js**: A JavaScript library for building user interfaces.
+-   **React Router**: For handling routing in the React application.
+-   **Auth0 React SDK**: For implementing authentication.
+-   **JavaScript (ES6+)**: The programming language used.
+-   **HTML5**: For structuring the web content.
+-   **CSS3**: For styling the application.
+-   **Fetch API**: For making HTTP requests to the backend.
+-   **npm**: As the package manager.
+-   **Create React App**: For bootstrapping the React application.
+-   **Docker**: Platform for developing, shipping, and running applications in containers.
 
 ## Getting Started
 
