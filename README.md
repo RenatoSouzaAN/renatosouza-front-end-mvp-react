@@ -67,7 +67,10 @@ To get a local copy up and running, follow these steps.
    REACT_APP_API_AUDIENCE=your_api_audience
    REACT_APP_CLIENT_ID=your_auth0_client_id
    ```
-4. Install NPM packages
+
+4.  If you're using docker, there's no need to do step 4 and you should instead follow [Docker](#docker) instructions
+
+5. Install NPM packages
    ```sh
    npm install
    ```
