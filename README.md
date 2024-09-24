@@ -1,11 +1,19 @@
+
+# DMarket Structure
+
+![Dmarket drawio](https://github.com/user-attachments/assets/84537415-65f1-4024-b06d-8765cf9f8681)
+
 # Front-end MVP
 
-This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running. -- The back-end has it own repository, the link for is below --
+This is the front-end MVP made to fullfill the requirements in the 'Requirements for MVP Development'. It's a web application that allows users to add, view, update, and delete products. It's built with React and requires the back-end API to be up and running.
+
+The back-end has it own repository, the link for is below.
+
+Back-end repository: [https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp)
 
 ## Table of Contents
 
 - [Technology Stack](#technology-stack)
-- [Back-end Repository](#back-end-repository)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -22,20 +30,16 @@ This is the front-end MVP made to fullfill the requirements in the 'Requirements
 
 This front-end is built using the following technologies:
 
--   **React.js**: A JavaScript library for building user interfaces
--   **React Router**: For handling routing in the React application
--   **Auth0 React SDK**: For implementing authentication
--   **JavaScript (ES6+)**: The programming language used
--   **HTML5**: For structuring the web content
--   **CSS3**: For styling the application
--   **Fetch API**: For making HTTP requests to the backend
--   **npm**: As the package manager
--   **Create React App**: For bootstrapping the React application
-
-## Back-end Repository
-
-The back-end for this project has its own repository. You can find it here:
-[https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp](https://github.com/RenatoSouzaAN/RenatoSouza-back-end-mvp)
+-   **React.js**: A JavaScript library for building user interfaces.
+-   **React Router**: For handling routing in the React application.
+-   **Auth0 React SDK**: For implementing authentication.
+-   **JavaScript (ES6+)**: The programming language used.
+-   **HTML5**: For structuring the web content.
+-   **CSS3**: For styling the application.
+-   **Fetch API**: For making HTTP requests to the backend.
+-   **npm**: As the package manager.
+-   **Create React App**: For bootstrapping the React application.
+-   **Docker**: Platform for developing, shipping, and running applications in containers.
 
 ## Getting Started
 
@@ -63,7 +67,10 @@ To get a local copy up and running, follow these steps.
    REACT_APP_API_AUDIENCE=your_api_audience
    REACT_APP_CLIENT_ID=your_auth0_client_id
    ```
-4. Install NPM packages
+
+4.  If you're using docker, there's no need to do step 4 and you should instead follow [Docker](#docker) instructions
+
+5. Install NPM packages
    ```sh
    npm install
    ```
