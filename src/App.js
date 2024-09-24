@@ -6,7 +6,7 @@ import EditProductForm from './components/EditProductForm';
 import AuthComponent from './components/AuthComponent';
 import Callback from './components/Callback';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useApi } from './api';
+import { useApi } from './infrastructure/api';
 
 function App() {
   const { isAuthenticated, error } = useAuth0();
