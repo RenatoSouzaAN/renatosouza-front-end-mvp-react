@@ -141,4 +141,4 @@ This application uses Auth0 for authentication. Users can log in to add, edit, o
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+This project is licensed under the Custom Code License Agreement. See the [LICENSE](./LICENSE) file for more details.
